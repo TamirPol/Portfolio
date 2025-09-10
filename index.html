@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tamir Polyakov | Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">Tamir Polyakov</div>
+      <ul class="nav-tabs">
+        <li data-tab="home" class="active">Home</li>
+        <li data-tab="skills">Skills</li>
+        <li data-tab="projects">Projects</li>
+        <li data-tab="contact">Contact</li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <main>
+      <canvas id="bg-canvas"></canvas>
+      <section id="page-home" class="page active">
+        <div class="home-center">
+          <img src="https://avatars.githubusercontent.com/u/56444757?v=4" alt="Tamir Polyakov" class="profile-pic" />
+          <h1>Tamir Polyakov</h1>
+          <h2>University of Waterloo</h2>
+          <p>CS student, builder, and creative engineer.<br>Always shipping something new.</p>
+        </div>
+      </section>
+      <section id="page-skills" class="page">
+        <!-- Skills content will be injected here by JS -->
+      </section>
+      <section id="page-projects" class="page">
+        <!-- Projects content will be injected here by JS -->
+      </section>
+      <section id="page-contact" class="page">
+        <!-- Contact content will be injected here by JS -->
+      </section>
+    </main>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
