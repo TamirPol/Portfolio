@@ -1,161 +1,21 @@
-// SPA navigation, animated background, and dynamic content
+// Single-page navigation, animated background only for Home, and dynamic content
 window.addEventListener('DOMContentLoaded', () => {
-  // --- SPA Navigation ---
-  const tabs = document.querySelectorAll('.nav-tabs li');
-  const pages = document.querySelectorAll('.page');
-  const canvas = document.getElementById('bg-canvas');
-  function showPage(tabName) {
-    tabs.forEach(t => t.classList.remove('active'));
-    pages.forEach(page => page.classList.remove('active'));
-    const pageId = 'page-' + tabName;
-    document.getElementById(pageId).classList.add('active');
-    document.querySelector('.nav-tabs li[data-tab="' + tabName + '"]').classList.add('active');
-    if (tabName === 'home') {
-      canvas.style.display = 'block';
-      document.body.style.background = '#0a0c12';
-    } else {
-      canvas.style.display = 'none';
-      document.body.style.background = '#0a0c12';
-    }
-  }
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      showPage(tab.dataset.tab);
+  // --- Smooth scroll for nav links ---
+  document.querySelectorAll('.nav-tabs a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 30,
+            behavior: 'smooth'
+          });
+        }
+      }
     });
   });
-  // On load, ensure correct background
-  showPage('home');
-
-  // --- Inject Skills Page ---
-// ...existing code...
-  const skillsHTML = `
-    <h2>Skills</h2>
-    <div class="skills-cards">
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/python.png" alt="Python" /></div>
-        <div class="skill-info"><div class="skill-name">Python</div><div class="skill-desc">ML, scripting, backend</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/js.png" alt="JavaScript" /></div>
-        <div class="skill-info"><div class="skill-name">JavaScript</div><div class="skill-desc">Web, apps, interactivity</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/nodejs.png" alt="Node.js" /></div>
-        <div class="skill-info"><div class="skill-name">Node.js</div><div class="skill-desc">APIs, servers, tools</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/c++.png" alt="C++" /></div>
-        <div class="skill-info"><div class="skill-name">C++</div><div class="skill-desc">Performance, systems</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/c.png" alt="C" /></div>
-        <div class="skill-info"><div class="skill-name">C</div><div class="skill-desc">Embedded, low-level</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/html.png" alt="HTML5" /></div>
-        <div class="skill-info"><div class="skill-name">HTML5</div><div class="skill-desc">Web structure</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/css-3.png" alt="CSS3" /></div>
-        <div class="skill-info"><div class="skill-name">CSS3</div><div class="skill-desc">Styling, animation</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><i class="fas fa-terminal"></i></div>
-        <div class="skill-info"><div class="skill-name">Bash</div><div class="skill-desc">Automation, scripting</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/git.png" alt="Git" /></div>
-        <div class="skill-info"><div class="skill-name">Git</div><div class="skill-desc">Version control</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/linux.png" alt="Linux" /></div>
-        <div class="skill-info"><div class="skill-name">Linux</div><div class="skill-desc">Dev, servers</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /></div>
-        <div class="skill-info"><div class="skill-name">MongoDB</div><div class="skill-desc">NoSQL, scalable</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite" /></div>
-        <div class="skill-info"><div class="skill-name">SQLite</div><div class="skill-desc">Lightweight DB</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="assets/react.png" alt="React" /></div>
-        <div class="skill-info"><div class="skill-name">React</div><div class="skill-desc">Web/mobile UI</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /></div>
-        <div class="skill-info"><div class="skill-name">Flask</div><div class="skill-desc">APIs, web backend</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" /></div>
-        <div class="skill-info"><div class="skill-name">TensorFlow</div><div class="skill-desc">ML, AI</div></div>
-      </div>
-      <div class="skill-card">
-        <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
-        <div class="skill-info"><div class="skill-name">WebSockets</div><div class="skill-desc">Realtime comms</div></div>
-      </div>
-    </div>
-  `;
-// ...existing code...
-  document.getElementById('page-skills').innerHTML = skillsHTML;
-
-  // --- Inject Projects Page ---
-  const projectsHTML = `
-    <h2>Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card window-card" style="--accent:#6ee2ff;">
-        <div class="window-bar"><i class="fas fa-leaf"></i> Mushroom Identifier</div>
-        <div class="window-media"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Mushroom App" /></div>
-        <div class="window-content">Mobile app for identifying mushrooms with ML.<div class="project-tech">TensorFlow, Flask, React Native</div></div>
-        <a class="project-link" href="https://github.com/TamirPol/mushroom-identifier" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-      <div class="project-card window-card" style="--accent:#1e90ff;">
-        <div class="window-bar"><i class="fas fa-baseball-ball"></i> AI Cricket Commentary</div>
-        <div class="window-media"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Cricket AI" /></div>
-        <div class="window-content">Live event tracking & commentary.<div class="project-tech">OpenCV, YOLO, LangChain</div></div>
-        <a class="project-link" href="https://github.com/TamirPol/ai-cricket-commentary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-      <div class="project-card window-card" style="--accent:#00eaff;">
-        <div class="window-bar"><i class="fas fa-shield-alt"></i> GeoGuard</div>
-        <div class="window-media"><img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="GeoGuard" /></div>
-        <div class="window-content">Safer route recommendations using crime data.<div class="project-tech">Python, MongoDB, React Native</div></div>
-        <a class="project-link" href="https://github.com/TamirPol/geoguard" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-      <div class="project-card window-card" style="--accent:#b2e7ff;">
-        <div class="window-bar"><i class="fas fa-basketball-ball"></i> Sports Match & Messaging</div>
-        <div class="window-media"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Sports Match" /></div>
-        <div class="window-content">Find sports partners & chat instantly.<div class="project-tech">React.js, Flask, WebSockets</div></div>
-        <a class="project-link" href="https://github.com/TamirPol/sports-matching" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-      </div>
-    </div>
-  `;
-  document.getElementById('page-projects').innerHTML = projectsHTML;
-
-  // --- Inject Contact Page ---
-  const contactHTML = `
-    <h2>Contact</h2>
-    <form id="contact-form" class="contact-form">
-      <div class="form-row">
-        <input type="text" name="name" placeholder="Your Name" required />
-      </div>
-      <div class="form-row">
-        <input type="email" name="email" placeholder="Your Email" required />
-      </div>
-      <div class="form-row">
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      </div>
-      <button type="submit">Send</button>
-      <div id="form-status"></div>
-    </form>
-    <div class="contact-links">
-      <a href="mailto:tpolyako@uwaterloo.ca"><i class="fas fa-envelope"></i></a>
-      <a href="https://linkedin.com/in/Tamir-Polyakov" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/TamirPol" target="_blank"><i class="fab fa-github"></i></a>
-    </div>
-    <p>Waterloo, ON | 873.688.2121</p>
-  `;
-  document.getElementById('page-contact').innerHTML = contactHTML;
 
   // EmailJS integration (add script tag if not present)
   if (!window.emailjs) {
@@ -218,54 +78,75 @@ window.addEventListener('DOMContentLoaded', () => {
     });
   }, 300);
 
-  // --- Animated Background: Interactive Lightning Particles ---
+  // --- Animated Background: Interactive Lightning Particles (Home only) ---
+  const canvas = document.getElementById('bg-canvas');
   const ctx = canvas.getContext('2d');
   let w = window.innerWidth, h = window.innerHeight;
   let mouse = { x: w/2, y: h/2 };
   let particles = [];
   const PARTICLE_COUNT = 220;
   function resize() {
-    w = window.innerWidth;
-    h = window.innerHeight;
+    const homeSection = document.getElementById('home');
+    w = homeSection.offsetWidth;
+    h = homeSection.offsetHeight;
     canvas.width = w;
     canvas.height = h;
+    // Position the canvas absolutely within #home
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
   }
   window.addEventListener('resize', resize);
   resize();
 
   function randomColor() {
-    const blues = ['#6ee2ff', '#1e90ff', '#00eaff', '#b2e7ff', '#0a0c12'];
-    return blues[Math.floor(Math.random() * blues.length)];
+    // Neon blues, cyans, teals, and a touch of purple for diversity
+    const neonBlues = [
+      '#00f6ff', // neon cyan
+      '#00eaff', // bright cyan
+      '#1e90ff', // vivid blue
+      '#6ee2ff', // light blue
+      '#00ffd0', // neon teal
+      '#00bfff', // deep sky blue
+      '#38b6ff', // neon blue
+      '#7df9ff', // electric blue
+      '#b2e7ff', // pale blue
+      '#6f00ff', // neon purple
+      '#3f51b5', // indigo blue
+      '#00fff7', // aqua
+      '#0ff0fc', // light neon cyan
+      '#00c3ff', // neon blue
+      '#00ffe7'  // neon teal
+    ];
+    return neonBlues[Math.floor(Math.random() * neonBlues.length)];
   }
 
   function Particle() {
     this.x = Math.random() * w;
     this.y = Math.random() * h;
-    this.vx = (Math.random() - 0.5) * 1.5;
-    this.vy = (Math.random() - 0.5) * 1.5;
-    this.radius = 1.7 + Math.random() * 2.2;
+    this.vx = (Math.random() - 0.5) * 2.2;
+    this.vy = (Math.random() - 0.5) * 2.2;
+    // More size diversity: 1.5 to 4.5
+    this.radius = 1.5 + Math.random() * 3;
     this.color = randomColor();
   }
   Particle.prototype.update = function() {
-    // Move toward or away from mouse
     let dx = mouse.x - this.x;
     let dy = mouse.y - this.y;
     let dist = Math.sqrt(dx*dx + dy*dy);
-    // Always move a little (gentle drift)
-    this.vx += (Math.random() - 0.5) * 0.06;
-    this.vy += (Math.random() - 0.5) * 0.06;
+    // Faster random drift (idle movement)
+    this.vx += (Math.random() - 0.5) * 0.16;
+    this.vy += (Math.random() - 0.5) * 0.16;
+    // Restore original cursor pull, reduce pull between particles
     if (dist < 180) {
-      // Attract if far, repel if close
       let angle = Math.atan2(dy, dx);
-      let force = dist < 60 ? -0.18 : 0.07;
+      let force = dist < 60 ? -0.05 : 0.02; // even less cursor pull
       this.vx += Math.cos(angle) * force;
       this.vy += Math.sin(angle) * force;
     }
     this.x += this.vx;
     this.y += this.vy;
-    this.vx *= 0.96;
-    this.vy *= 0.96;
-    // Bounce off edges
+    this.vx *= 0.94; // less friction, so they move a bit faster
+    this.vy *= 0.94;
     if (this.x < 0 || this.x > w) this.vx *= -1;
     if (this.y < 0 || this.y > h) this.vy *= -1;
     this.x = Math.max(0, Math.min(w, this.x));
@@ -276,25 +157,37 @@ window.addEventListener('DOMContentLoaded', () => {
     ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
     ctx.fillStyle = this.color;
     ctx.shadowColor = this.color;
-    ctx.shadowBlur = 16;
+    ctx.shadowBlur = 32; // More glow for neon effect
+    ctx.globalAlpha = 0.92; // Slightly more visible
     ctx.fill();
     ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1.0;
   };
 
   function connectParticles() {
-    // Connect particles to each other
+    // Repel particles if too close and cursor is not near
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
         let dy = particles[i].y - particles[j].y;
         let dist = Math.sqrt(dx*dx + dy*dy);
+        // Repulsion if too close and cursor is far
+        let cursorDist = Math.sqrt((mouse.x - particles[i].x) ** 2 + (mouse.y - particles[i].y) ** 2);
+        if (dist < 32 && cursorDist > 120) {
+          // Push them apart
+          let angle = Math.atan2(dy, dx);
+          let push = (32 - dist) * 0.08;
+          particles[i].vx += Math.cos(angle) * push;
+          particles[i].vy += Math.sin(angle) * push;
+          particles[j].vx -= Math.cos(angle) * push;
+          particles[j].vy -= Math.sin(angle) * push;
+        }
         if (dist < 90) {
           ctx.save();
           ctx.strokeStyle = '#6ee2ff33';
           ctx.lineWidth = 1.1;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
-          // Lightning effect: jagged line
           let midX = (particles[i].x + particles[j].x) / 2 + (Math.random()-0.5)*10;
           let midY = (particles[i].y + particles[j].y) / 2 + (Math.random()-0.5)*10;
           ctx.lineTo(midX, midY);
@@ -304,7 +197,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
       }
     }
-    // Connect particles to mouse with "signal" lines
     for (let i = 0; i < particles.length; i++) {
       let dx = mouse.x - particles[i].x;
       let dy = mouse.y - particles[i].y;
@@ -315,7 +207,6 @@ window.addEventListener('DOMContentLoaded', () => {
         ctx.lineWidth = 1.7;
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
-        // Two "signal" lines per particle
         let mid1x = (particles[i].x + mouse.x) / 2 + (Math.random()-0.5)*18;
         let mid1y = (particles[i].y + mouse.y) / 2 + (Math.random()-0.5)*18;
         ctx.lineTo(mid1x, mid1y);
@@ -327,12 +218,20 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function animate() {
-    ctx.clearRect(0, 0, w, h);
-    for (let p of particles) {
-      p.update();
-      p.draw();
+    // Only show particles if Home section is visible in viewport
+    const homeSection = document.getElementById('home');
+    const rect = homeSection.getBoundingClientRect();
+    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+      canvas.style.display = 'block';
+      ctx.clearRect(0, 0, w, h);
+      for (let p of particles) {
+        p.update();
+        p.draw();
+      }
+      connectParticles();
+    } else {
+      canvas.style.display = 'none';
     }
-    connectParticles();
     requestAnimationFrame(animate);
   }
 
@@ -342,7 +241,94 @@ window.addEventListener('DOMContentLoaded', () => {
   animate();
 
   window.addEventListener('mousemove', e => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
+    const homeSection = document.getElementById('home');
+    const rect = homeSection.getBoundingClientRect();
+    // Mouse position relative to the canvas inside #home
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
   });
+
+  // --- Project Modal Logic ---
+  const projectDetails = {
+    mushroom: {
+      title: 'Mushroom Identifier',
+      img: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80',
+      desc: 'A mobile app that uses machine learning to identify wild mushrooms from photos. Features offline support, a growing database, and safety tips for foragers. Built with TensorFlow, Flask, and React Native.',
+      tech: 'TensorFlow, Flask, React Native',
+      link: 'https://github.com/TamirPol/mushroom-identifier'
+    },
+    cricket: {
+      title: 'AI Cricket Commentary',
+      img: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80',
+      desc: 'A computer vision system for live cricket event tracking and automated commentary. Detects player actions, scores, and generates natural language commentary in real time.',
+      tech: 'OpenCV, YOLO, LangChain',
+      link: 'https://github.com/TamirPol/ai-cricket-commentary'
+    },
+    geoguard: {
+      title: 'GeoGuard',
+      img: 'https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80',
+      desc: 'A mobile app that recommends safer routes using real-time crime data. Visualizes risk on maps and alerts users to avoid dangerous areas. Built with Python, MongoDB, and React Native.',
+      tech: 'Python, MongoDB, React Native',
+      link: 'https://github.com/TamirPol/geoguard'
+    },
+    sports: {
+      title: 'Sports Match & Messaging',
+      img: 'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80',
+      desc: 'A platform to find sports partners and chat instantly. Features real-time messaging, skill-based matching, and event scheduling. Built with React.js, Flask, and WebSockets.',
+      tech: 'React.js, Flask, WebSockets',
+      link: 'https://github.com/TamirPol/sports-matching'
+    },
+    portfolio: {
+      title: 'This Portfolio',
+      img: 'assets/portfolio-preview.png',
+      desc: 'A fully custom, animated portfolio site built from scratch. Features a neon particle background, smooth navigation, and interactive project cards. Built with vanilla HTML, CSS, JS, and GSAP.',
+      tech: 'HTML, CSS, JS, GSAP',
+      link: 'https://github.com/TamirPol/Portfolio'
+    },
+    'coming-soon': {
+      title: 'Coming Soon',
+      img: 'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80',
+      desc: 'A new project is launching soon. Stay tuned for updates!',
+      tech: 'Stay tuned!',
+      link: null
+    }
+  };
+
+  const modal = document.getElementById('project-modal');
+  const modalTitle = document.getElementById('modal-title');
+  const modalImg = document.getElementById('modal-img');
+  const modalDesc = document.getElementById('modal-desc');
+  const modalTech = document.getElementById('modal-tech');
+  const modalLinks = document.getElementById('modal-links');
+
+  function openModal(key) {
+    const proj = projectDetails[key];
+    if (!proj) return;
+    modalTitle.textContent = proj.title;
+    modalImg.innerHTML = `<img src="${proj.img}" alt="${proj.title}" />`;
+    modalDesc.textContent = proj.desc;
+    modalTech.textContent = proj.tech;
+    if (proj.link) {
+      modalLinks.innerHTML = `<a href="${proj.link}" target="_blank"><i class='fab fa-github'></i> GitHub</a>`;
+    } else {
+      modalLinks.innerHTML = '';
+    }
+    modal.classList.add('active');
+  }
+
+  // Open modal on card click
+  setTimeout(() => {
+    document.querySelectorAll('.project-card.window-card:not(.coming-soon)').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-project');
+        openModal(key);
+      });
+    });
+    document.querySelector('.close-modal').addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+    modal.addEventListener('click', e => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+  }, 400);
 });

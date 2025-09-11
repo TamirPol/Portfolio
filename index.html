@@ -17,32 +17,176 @@
     <nav>
       <div class="logo">Tamir Polyakov</div>
       <ul class="nav-tabs">
-        <li data-tab="home" class="active">Home</li>
-        <li data-tab="skills">Skills</li>
-        <li data-tab="projects">Projects</li>
-        <li data-tab="contact">Contact</li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
   <main>
     <main>
-      <canvas id="bg-canvas"></canvas>
-      <section id="page-home" class="page active">
+      <section id="home" class="home-section">
         <div class="home-center">
           <img src="https://avatars.githubusercontent.com/u/56444757?v=4" alt="Tamir Polyakov" class="profile-pic" />
           <h1>Tamir Polyakov</h1>
           <h2>University of Waterloo</h2>
           <p>CS student, builder, and creative engineer.<br>Always shipping something new.</p>
         </div>
+        <canvas id="bg-canvas"></canvas>
       </section>
-      <section id="page-skills" class="page">
-        <!-- Skills content will be injected here by JS -->
+  <section id="about" class="about-section">
+        <h2>About Me</h2>
+        <div class="about-content about-flex">
+          <div class="about-text">
+            <p>Hey! I'm Tamir, a Computer Science student at the University of Waterloo. I love building things that blend creativity and engineering—whether it's full-stack apps, machine learning, or embedded systems. I'm always looking for new challenges and ways to push my skills further. Outside of coding, you'll find me climbing, exploring, or working on side projects.</p>
+          </div>
+          <div class="about-photo">
+            <!-- Replace the src with your own cutout/photo if desired -->
+            <img src="assets/profile-cutout.png" alt="Tamir Polyakov" />
+          </div>
+        </div>
       </section>
-      <section id="page-projects" class="page">
-        <!-- Projects content will be injected here by JS -->
+  <section id="skills" class="skills-section">
+    <h2>Skills</h2>
+    <div class="skills-cards">
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/python.png" alt="Python" /></div>
+        <div class="skill-info"><div class="skill-name">Python</div><div class="skill-desc">ML, scripting, backend</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/js.png" alt="JavaScript" /></div>
+        <div class="skill-info"><div class="skill-name">JavaScript</div><div class="skill-desc">Web, apps, interactivity</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/nodejs.png" alt="Node.js" /></div>
+        <div class="skill-info"><div class="skill-name">Node.js</div><div class="skill-desc">APIs, servers, tools</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/c++.png" alt="C++" /></div>
+        <div class="skill-info"><div class="skill-name">C++</div><div class="skill-desc">Performance, systems</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/c.png" alt="C" /></div>
+        <div class="skill-info"><div class="skill-name">C</div><div class="skill-desc">Embedded, low-level</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/html.png" alt="HTML5" /></div>
+        <div class="skill-info"><div class="skill-name">HTML5</div><div class="skill-desc">Web structure</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/css-3.png" alt="CSS3" /></div>
+        <div class="skill-info"><div class="skill-name">CSS3</div><div class="skill-desc">Styling, animation</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-terminal"></i></div>
+        <div class="skill-info"><div class="skill-name">Bash</div><div class="skill-desc">Automation, scripting</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/git.png" alt="Git" /></div>
+        <div class="skill-info"><div class="skill-name">Git</div><div class="skill-desc">Version control</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/linux.png" alt="Linux" /></div>
+        <div class="skill-info"><div class="skill-name">Linux</div><div class="skill-desc">Dev, servers</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /></div>
+        <div class="skill-info"><div class="skill-name">MongoDB</div><div class="skill-desc">NoSQL, scalable</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQLite" /></div>
+        <div class="skill-info"><div class="skill-name">SQLite</div><div class="skill-desc">Lightweight DB</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="assets/react.png" alt="React" /></div>
+        <div class="skill-info"><div class="skill-name">React</div><div class="skill-desc">Web/mobile UI</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask" /></div>
+        <div class="skill-info"><div class="skill-name">Flask</div><div class="skill-desc">APIs, web backend</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" /></div>
+        <div class="skill-info"><div class="skill-name">TensorFlow</div><div class="skill-desc">ML, AI</div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+        <div class="skill-info"><div class="skill-name">WebSockets</div><div class="skill-desc">Realtime comms</div></div>
+      </div>
+    </div>
       </section>
-      <section id="page-contact" class="page">
-        <!-- Contact content will be injected here by JS -->
+  <section id="projects" class="projects-section">
+        <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card window-card" data-project="mushroom">
+          <div class="window-bar"><i class="fas fa-leaf"></i> Mushroom Identifier</div>
+          <div class="window-media"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Mushroom App" /></div>
+          <div class="window-content">Mobile app for identifying mushrooms with ML.<div class="project-tech">TensorFlow, Flask, React Native</div></div>
+          <a class="project-link" href="https://github.com/TamirPol/mushroom-identifier" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="project-card window-card" data-project="cricket">
+          <div class="window-bar"><i class="fas fa-baseball-ball"></i> AI Cricket Commentary</div>
+          <div class="window-media"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Cricket AI" /></div>
+          <div class="window-content">Live event tracking & commentary.<div class="project-tech">OpenCV, YOLO, LangChain</div></div>
+          <a class="project-link" href="https://github.com/TamirPol/ai-cricket-commentary" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="project-card window-card" data-project="geoguard">
+          <div class="window-bar"><i class="fas fa-shield-alt"></i> GeoGuard</div>
+          <div class="window-media"><img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="GeoGuard" /></div>
+          <div class="window-content">Safer route recommendations using crime data.<div class="project-tech">Python, MongoDB, React Native</div></div>
+          <a class="project-link" href="https://github.com/TamirPol/geoguard" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="project-card window-card" data-project="sports">
+          <div class="window-bar"><i class="fas fa-basketball-ball"></i> Sports Match & Messaging</div>
+          <div class="window-media"><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=400&q=80" alt="Sports Match" /></div>
+          <div class="window-content">Find sports partners & chat instantly.<div class="project-tech">React.js, Flask, WebSockets</div></div>
+          <a class="project-link" href="https://github.com/TamirPol/sports-matching" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="project-card window-card" data-project="portfolio">
+          <div class="window-bar"><i class="fas fa-laptop-code"></i> This Portfolio</div>
+          <div class="window-media"><img src="assets/portfolio-preview.png" alt="Portfolio Preview" /></div>
+          <div class="window-content">Animated, interactive portfolio site.<div class="project-tech">HTML, CSS, JS, GSAP</div></div>
+          <a class="project-link" href="https://github.com/TamirPol/Portfolio" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+        </div>
+        <div class="project-card window-card coming-soon" data-project="coming-soon" style="--accent:#4444ff;opacity:0.7;">
+          <div class="window-bar"><i class="fas fa-rocket"></i> Coming Soon</div>
+          <div class="window-media"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="Coming Soon" /></div>
+          <div class="window-content">A new project is launching soon.<div class="project-tech">Stay tuned!</div></div>
+        </div>
+      </div>
+      <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+          <span class="close-modal">&times;</span>
+          <div id="modal-title"></div>
+          <div id="modal-img"></div>
+          <div id="modal-desc"></div>
+          <div id="modal-tech"></div>
+          <div id="modal-links"></div>
+        </div>
+      </div>
+    </section>
+  <section id="contact" class="contact-section">
+        <h2>Contact</h2>
+    <form id="contact-form" class="contact-form">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your Name" required />
+      </div>
+      <div class="form-row">
+        <input type="email" name="email" placeholder="Your Email" required />
+      </div>
+      <div class="form-row">
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      </div>
+      <button type="submit">Send</button>
+      <div id="form-status"></div>
+    </form>
+    <div class="contact-links">
+      <a href="mailto:tpolyako@uwaterloo.ca"><i class="fas fa-envelope"></i></a>
+      <a href="https://linkedin.com/in/Tamir-Polyakov" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/TamirPol" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
       </section>
     </main>
   </main>
