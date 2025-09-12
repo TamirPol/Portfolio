@@ -84,19 +84,34 @@ window.addEventListener('DOMContentLoaded', () => {
   let w = window.innerWidth, h = window.innerHeight;
   let mouse = { x: w/2, y: h/2 };
   let particles = [];
-  const PARTICLE_COUNT = 220;
-  function resize() {
+  let PARTICLE_COUNT = 220;
+  let isMobile = false;
+
+  function getParticleCount() {
+    if (window.innerWidth < 600) return 0; // No particles on very small screens
+    if (window.innerWidth < 900) return 30;
+    if (window.innerWidth < 1300) return 60;
+    return 100;
+  }
+
+  function resizeParticles() {
     const homeSection = document.getElementById('home');
     w = homeSection.offsetWidth;
     h = homeSection.offsetHeight;
     canvas.width = w;
     canvas.height = h;
-    // Position the canvas absolutely within #home
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
+    PARTICLE_COUNT = getParticleCount();
+    isMobile = window.innerWidth < 600;
+    // Reinitialize particles to fill new area
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push(new Particle());
+    }
   }
-  window.addEventListener('resize', resize);
-  resize();
+  window.addEventListener('resize', resizeParticles);
+  resizeParticles();
 
   function randomColor() {
     // Neon blues, cyans, teals, and a touch of purple for diversity
@@ -133,15 +148,20 @@ window.addEventListener('DOMContentLoaded', () => {
     let dx = mouse.x - this.x;
     let dy = mouse.y - this.y;
     let dist = Math.sqrt(dx*dx + dy*dy);
-    // Faster random drift (idle movement)
-    this.vx += (Math.random() - 0.5) * 0.16;
-    this.vy += (Math.random() - 0.5) * 0.16;
-    // Restore original cursor pull, reduce pull between particles
-    if (dist < 180) {
-      let angle = Math.atan2(dy, dx);
-      let force = dist < 60 ? -0.05 : 0.02; // even less cursor pull
-      this.vx += Math.cos(angle) * force;
-      this.vy += Math.sin(angle) * force;
+    // On mobile, just float gently, no cursor pull
+    if (isMobile) {
+      this.vx += (Math.random() - 0.5) * 0.10;
+      this.vy += (Math.random() - 0.5) * 0.10;
+    } else {
+      // Faster random drift (idle movement)
+      this.vx += (Math.random() - 0.5) * 0.16;
+      // Restore original cursor pull, reduce pull between particles
+      if (dist < 180) {
+        let angle = Math.atan2(dy, dx);
+        let force = dist < 60 ? -0.05 : 0.02; // even less cursor pull
+        this.vx += Math.cos(angle) * force;
+        this.vy += Math.sin(angle) * force;
+      }
     }
     this.x += this.vx;
     this.y += this.vy;
@@ -221,7 +241,7 @@ window.addEventListener('DOMContentLoaded', () => {
     // Only show particles if Home section is visible in viewport
     const homeSection = document.getElementById('home');
     const rect = homeSection.getBoundingClientRect();
-    if (rect.bottom > 0 && rect.top < window.innerHeight) {
+    if (rect.bottom > 0 && rect.top < window.innerHeight && PARTICLE_COUNT > 0) {
       canvas.style.display = 'block';
       ctx.clearRect(0, 0, w, h);
       for (let p of particles) {
@@ -241,6 +261,7 @@ window.addEventListener('DOMContentLoaded', () => {
   animate();
 
   window.addEventListener('mousemove', e => {
+    if (isMobile) return;
     const homeSection = document.getElementById('home');
     const rect = homeSection.getBoundingClientRect();
     // Mouse position relative to the canvas inside #home
@@ -331,4 +352,147 @@ window.addEventListener('DOMContentLoaded', () => {
       if (e.target === modal) modal.classList.remove('active');
     });
   }, 400);
+
+  // --- Hamburger menu toggle ---
+  document.addEventListener('DOMContentLoaded', () => {
+    const navToggle = document.getElementById('nav-toggle');
+    const navTabs = document.getElementById('nav-tabs');
+    if (navToggle && navTabs) {
+      navToggle.addEventListener('click', () => {
+        navTabs.classList.toggle('open');
+      });
+      navTabs.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navTabs.classList.remove('open');
+        });
+      });
+    }
+  });
+
+  // --- Horizontal Timeline Expand/Collapse ---
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.timeline-title').forEach(title => {
+      title.addEventListener('click', function() {
+        const node = this.closest('.timeline-node');
+        if (node.classList.contains('open')) {
+          node.classList.remove('open');
+        } else {
+          document.querySelectorAll('.timeline-node.open').forEach(n => n.classList.remove('open'));
+          node.classList.add('open');
+        }
+      });
+    });
+  });
+
+  // --- True Horizontal Timeline Info Panel ---
+  // Timeline Data (true spans, overlapping)
+  const timelineData = {
+    uwaterloo: {
+      title: "University of Waterloo",
+      date: "Sept 2023 – Apr 2028",
+      role: "Candidate for BASc, Computer Engineering",
+      bullets: [
+        "Relevant Courses: Algorithms, Data Structures, Digital Systems, Software Engineering, Linear Circuits, Probability, and more.",
+        "Dean's List, 2023-2024."
+      ]
+    },
+    telesat: {
+      title: "Telesat",
+      date: "May 2024 – Aug 2024",
+      role: "Software Developer Intern",
+      bullets: [
+        "Developed internal tools for satellite operations.",
+        "Worked with Python, React, and cloud APIs.",
+        "Collaborated with cross-functional teams."
+      ]
+    },
+    midnight: {
+      title: "Midnight Sun Solar Car Team",
+      date: "Sept 2023 – Present",
+      role: "Firmware Developer",
+      bullets: [
+        "Designed and implemented embedded systems for solar car telemetry.",
+        "Worked with CAN bus, C/C++, and real-time debugging.",
+        "Participated in international competitions."
+      ]
+    },
+    altitude: {
+      title: "Altitude Gym",
+      date: "May 2022 – Aug 2023",
+      role: "Climbing Instructor & Staff",
+      bullets: [
+        "Taught climbing techniques and safety to groups and individuals.",
+        "Managed gym operations and customer service."
+      ]
+    }
+  };
+
+  const nodes = document.querySelectorAll('.true-timeline .timeline-node');
+  const infoPanel = document.getElementById('timeline-info_panel');
+  function showPanel(key) {
+    nodes.forEach(n => n.classList.remove('active'));
+    const node = document.querySelector('.timeline-node[data-key="' + key + '"]');
+    if (node) node.classList.add('active');
+    const data = timelineData[key];
+    if (!data) return;
+    let html = `<h3>${data.title}</h3><span class='timeline-date'>${data.date}</span><div class='timeline-role'>${data.role}</div><ul>`;
+    data.bullets.forEach(b => html += `<li>${b}</li>`);
+    html += '</ul>';
+    infoPanel.innerHTML = html;
+    infoPanel.classList.add('active');
+  }
+  nodes.forEach(node => {
+    node.addEventListener('click', function() {
+      const key = this.getAttribute('data-key');
+      showPanel(key);
+    });
+  });
+  // Show first by default
+  if (nodes.length) showPanel(nodes[0].getAttribute('data-key'));
+
+
+  // About Me / Work Experience tab switcher with fast, stiff GSAP animation
+  function setupAboutTabs() {
+    const tabs = document.querySelectorAll('.about-tab');
+    const panels = document.querySelectorAll('.about-tab-panel');
+    // On load, show only the active tab's panel
+    tabs.forEach((tab, i) => {
+      if (tab.classList.contains('active')) {
+        panels[i].style.display = 'flex';
+      } else {
+        panels[i].style.display = 'none';
+      }
+    });
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        if (tab.classList.contains('active')) return;
+        const activeIdx = Array.from(tabs).findIndex(t => t.classList.contains('active'));
+        const nextIdx = Array.from(tabs).indexOf(tab);
+        const activePanel = panels[activeIdx];
+        const nextPanel = panels[nextIdx];
+        // Animate out current panel (fast, stiff slide down/fade)
+        gsap.to(activePanel, {
+          duration: 0.18,
+          y: 40,
+          opacity: 0,
+          ease: 'power2.in',
+          onComplete: () => {
+            activePanel.style.display = 'none';
+            activePanel.style.transform = '';
+            activePanel.style.opacity = '';
+            // Animate in next panel (fast, stiff slide up/fade)
+            nextPanel.style.display = 'flex';
+            gsap.fromTo(nextPanel,
+              { y: -40, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.18, ease: 'power2.out', clearProps: 'all' }
+            );
+          }
+        });
+        tabs.forEach((t, i) => {
+          t.classList.toggle('active', i === nextIdx);
+        });
+      });
+    });
+  }
+  setupAboutTabs();
 });

@@ -16,7 +16,7 @@
   <header>
     <nav>
       <div class="logo">Tamir Polyakov</div>
-      <ul class="nav-tabs">
+      <ul class="nav-tabs" id="nav-tabs">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
@@ -38,13 +38,45 @@
       </section>
   <section id="about" class="about-section">
         <h2>About Me</h2>
-        <div class="about-content about-flex">
+        <div class="about-tabs">
+          <button class="about-tab active" data-tab="about">About Me</button>
+          <button class="about-tab" data-tab="work">Experience</button>
+        </div>
+        <div class="about-content about-flex about-tab-panel" data-panel="about">
           <div class="about-text">
-            <p>Hey! I'm Tamir, a Computer Science student at the University of Waterloo. I love building things that blend creativity and engineering—whether it's full-stack apps, machine learning, or embedded systems. I'm always looking for new challenges and ways to push my skills further. Outside of coding, you'll find me climbing, exploring, or working on side projects.</p>
+            <p>Hey, I'm Tamir Polyakov: a Computer Science student at the University of Waterloo. I love building things end-to-end: web apps, mobile apps, and the backend systems behind them. I've also dug deep into lower-level work with C++ and embedded projects. What drives me is taking an idea, shaping it into real software, and learning something new along the way. I'm looking for co-op roles where I can keep growing and contribute to projects that have real impact.</p>
+            <ul class="about-bullets">
+              <li><strong>University:</strong> University of Waterloo</li>
+              <li><strong>Degree:</strong> BCS, Computer Science (2024–2029)</li>
+              <li><strong>Courses:</strong> Functional Programming, Object Orientated Programming, Algorithm Design and Data Abstraction, Linux and debugging</li>
+            </ul>
           </div>
           <div class="about-photo">
-            <!-- Replace the src with your own cutout/photo if desired -->
-            <img src="assets/profile-cutout.png" alt="Tamir Polyakov" />
+            <img src="assets/linkedin.jpg" alt="Tamir Polyakov" />
+          </div>
+        </div>
+        <div class="about-content about-tab-panel" data-panel="work">
+          <div class="about-text">
+            <h3>Experience</h3>
+            <div class="work-exp-list">
+              <div class="work-exp-item">
+                <div class="work-exp-title">Software Engineering Co-op</div>
+                <div class="work-exp-meta">Telesat • Ottawa, ON • May 2025 – Aug 2025</div>
+                <ul class="work-exp-bullets">
+                  <li>Built a C++ REST-to-gRPC Gateway, automating client/service codegen and supporting dynamic message conversion.</li>
+                  <li>Improved route matching latency by 70× with a custom LRU cache and thread-safe design.</li>
+                  <li>Designed secure REST APIs and authentication for UT Manager (OpenAPI, YAML, tokens).</li>
+                </ul>
+              </div>
+              <div class="work-exp-item">
+                <div class="work-exp-title">Firmware Developer</div>
+                <div class="work-exp-meta">Midnight Sun Rayce Engineering Team • Waterloo, ON • Oct 2024 – Apr 2025</div>
+                <ul class="work-exp-bullets">
+                  <li>Optimized STM32 firmware builds and automated flash memory reporting.</li>
+                  <li>Developed a flexible I²C ADC driver for the Solar Sense system.</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>

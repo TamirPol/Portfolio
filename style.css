@@ -13,7 +13,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1.2rem;
-  margin-top: 0.75rem;
+  margin-top: 0.2rem;
   justify-items: center;
   align-items: stretch;
   width: 100%;
@@ -22,6 +22,19 @@ h2 {
 @media (max-width: 900px) {
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+  }
+}
+@media (min-width: 901px) and (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: 2fr 2fr;
+    gap: 1.2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
   }
 }
 .project-card.window-card {
@@ -298,8 +311,8 @@ main {
 }
 section {
   width: 100vw;
-  margin: 0 0 1.25rem 0;
-  padding: 4.5rem 0 2.5rem 0;
+  margin: 0 0 0.2rem 0;
+  padding: 1.2rem 0 1.2rem 0;
   min-height: 60vh;
   position: relative;
   z-index: 1;
@@ -357,16 +370,43 @@ section {
   font-size: 2.7rem;
   color: #6ee2ff;
   margin-bottom: 0.2rem;
+  text-shadow:
+    0 2px 8px rgba(16,19,26,0.18),
+    0 0 1.5px #10131a,
+    0 0 0.5px #10131a;
+  -webkit-text-stroke: 0.7px #10131a;
+  position: relative;
+  z-index: 2;
+  font-weight: 800;
+  letter-spacing: 0.01em;
 }
 .home-center h2 {
   font-size: 1.3rem;
   color: #b2e7ff;
   margin-bottom: 0.2rem;
+  text-shadow:
+    0 2px 8px rgba(16,19,26,0.18),
+    0 0 1.5px #10131a,
+    0 0 0.5px #10131a;
+  -webkit-text-stroke: 0.7px #10131a;
+  position: relative;
+  z-index: 2;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 .home-center p {
   font-size: 1.1rem;
   color: #eaf6fb;
   text-align: center;
+  text-shadow:
+    0 2px 8px rgba(16,19,26,0.18),
+    0 0 1.5px #10131a,
+    0 0 0.5px #10131a;
+  -webkit-text-stroke: 0.7px #10131a;
+  position: relative;
+  z-index: 2;
+  font-weight: 400;
+  letter-spacing: 0.01em;
 }
 footer {
   text-align: center;
@@ -498,4 +538,73 @@ footer {
   background: #fff;
   color: #10131a;
   box-shadow: 0 4px 16px var(--accent, #6ee2ff);
+}
+
+/* About Me Tabs */
+.about-tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.about-tab {
+  background: #23233a;
+  color: #fff;
+  border: 1.5px solid #333;
+  border-radius: 8px 8px 0 0;
+  padding: 8px 22px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  outline: none;
+}
+.about-tab.active,
+.about-tab:focus {
+  background: #2a2a3a;
+  color: #7ad6c9;
+  border-bottom: 2.5px solid #7ad6c9;
+  z-index: 2;
+}
+.about-tab-panel {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 0;
+}
+@media (max-width: 700px) {
+  .about-tab-panel { flex-direction: column; gap: 12px; }
+}
+
+/* Work Experience List in About */
+.work-exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 8px;
+}
+.work-exp-item {
+  background: #23233a;
+  border-radius: 10px;
+  border: 1px solid #333;
+  padding: 16px 20px 12px 20px;
+  box-shadow: 0 2px 10px #0003;
+}
+.work-exp-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: #7ad6c9;
+  margin-bottom: 2px;
+}
+.work-exp-meta {
+  font-size: 0.98rem;
+  color: #b6b6ff;
+  margin-bottom: 7px;
+}
+.work-exp-bullets {
+  margin: 0;
+  padding-left: 18px;
+  color: #b6b6ff;
+  font-size: 1.01rem;
+  display: grid;
+  gap: 5px;
 }
