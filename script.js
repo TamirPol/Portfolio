@@ -248,28 +248,28 @@ window.addEventListener('DOMContentLoaded', () => {
   // --- Project Modal Logic ---
   const projectDetails = {
     mushroom: {
-      title: 'Mushroom Identifier',
-      desc: 'Take a photo, get a likely species. Runs a lightweight CNN and shows confidence, look-alikes, and safety notes. Offline cache for trails.',
-      tech: 'TensorFlow, Flask API, React Native'
+      title: 'Find A Champ',
+      desc: 'Take a photo and get a likely species with confidence and common look-alikes. Log finds with notes in a clean mobile UI; a Flask API serves a trained model the app calls from device. Built for trail use and quick field checks.',
+      tech: 'TensorFlow, Flask, React Native, SQLite, JS'
     },
     cricket: {
       title: 'AI Cricket Commentary',
-      desc: 'Detects events (bowls, shots, wickets) from video and generates short play-by-play lines. Uses object tracking + a promptable NLG layer.',
-      tech: 'OpenCV, YOLO, LangChain'
+      desc: 'YOLO through object detection detects match events (boundaries, wickets, etc.) and posts them to an API, which prompts an LLM to generate play-by-play. Text is converted to natural speech for multilingual audio and live commentary.',
+      tech: 'YOLO, Python, LLama LLM, Cartesia TTS'
     },
     geoguard: {
       title: 'GeoGuard',
-      desc: 'Scores routes with city crime datasets and highlights risk on the map. Suggests safer alternates; simple on-device caching for speed.',
-      tech: 'Python ETL, MongoDB, React Native'
+      desc: 'Find safer (or faster) routes by scoring paths against GTA crime data. We ingest 40k+ police reports, index them with MongoDB 2dsphere, and evaluate hundreds of route midpoints in parallel to surface lower-risk alternates.',
+      tech: 'Python, MongoDB, React Native, JS'
     },
     sports: {
-      title: 'Sports Match & Messaging',
-      desc: 'Match by sport, location, and skill. Realtime DMs and event scheduling; WebSocket presence and typing indicators.',
-      tech: 'React, Flask, WebSockets'
+      title: 'Spotch Match',
+      desc: 'Match with nearby players by sport, location, age, and preferences, then chat in real time. Includes login/sign-up, searchable users, editable profiles with bios, and a home view for active threads. Realtime messaging runs over Flask-SocketIO with a lightweight REST API behind it.',
+      tech: 'Python, React, SQLite, Flask, WebSockets, JS'
     },
     portfolio: {
       title: 'This Portfolio',
-      desc: 'Custom, animated single-page site with a neon particle background and 3D tilt cards. No frameworks; small, fast, and fun.',
+      desc: 'Custom, animated single-page site with a neon particle background and 3D tilt cards. Small, fast, and framework-free.',
       tech: 'HTML, CSS, JS, GSAP'
     },
     'coming-soon': {
