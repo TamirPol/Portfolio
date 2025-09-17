@@ -1,5 +1,9 @@
 // Portfolio interactions + GSAP hero animation
 window.addEventListener('DOMContentLoaded', () => {
+// Always reload to top of page
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
   // -------- Utilities --------
   function $(sel, root = document) { return root.querySelector(sel); }
   function $all(sel, root = document) { return Array.from(root.querySelectorAll(sel)); }
@@ -152,7 +156,7 @@ window.addEventListener('DOMContentLoaded', () => {
         ease: 'none',
         scrollTrigger: {
           trigger: '.projects-carousel',
-          start: 'top top+=50',  // small lead-in before pin
+          start: 'top top+=100',  // small lead-in before pin
           end: () => '+=' + Math.max(1, Math.round(targets.travel * 0.6)), // shorter distance => faster
           pin: true,
           scrub: true,
