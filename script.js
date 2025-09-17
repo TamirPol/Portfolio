@@ -152,7 +152,7 @@ window.addEventListener('DOMContentLoaded', () => {
         ease: 'none',
         scrollTrigger: {
           trigger: '.projects-carousel',
-          start: 'top top+=160',  // small lead-in before pin
+          start: 'top top+=50',  // small lead-in before pin
           end: () => '+=' + Math.max(1, Math.round(targets.travel * 0.6)), // shorter distance => faster
           pin: true,
           scrub: true,
@@ -197,4 +197,52 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     });
   })();
+});
+// --- First-visit "site in progress" popup ---
+window.addEventListener('DOMContentLoaded', () => {
+  try {
+    const overlay = document.getElementById('wipOverlay');
+    const dialog  = overlay ? overlay.querySelector('.wip-dialog') : null;
+    const okBtn   = document.getElementById('wipOk');
+    const closeBtn= document.getElementById('wipClose');
+    if (!overlay || !dialog || !okBtn || !closeBtn) return;
+
+    const KEY = 'wipNoticeDismissed';
+    if (localStorage.getItem(KEY) === '1') return;
+
+    function openPopup(){
+      overlay.hidden = false;
+      requestAnimationFrame(() => overlay.classList.add('is-open'));
+      okBtn.focus();
+
+      // simple focus trap + Esc
+      function onKey(e){
+        if (e.key === 'Escape') { e.preventDefault(); dismiss(); }
+        if (e.key === 'Tab') {
+          const foci = [okBtn, closeBtn];
+          const idx = foci.indexOf(document.activeElement);
+          if (idx === -1) { e.preventDefault(); okBtn.focus(); return; }
+          const next = (idx + (e.shiftKey ? -1 : 1) + foci.length) % foci.length;
+          e.preventDefault(); foci[next].focus();
+        }
+      }
+      overlay.addEventListener('keydown', onKey);
+      overlay._cleanup = () => overlay.removeEventListener('keydown', onKey);
+    }
+
+    function dismiss(){
+      localStorage.setItem(KEY, '1');
+      overlay.classList.remove('is-open');
+      setTimeout(() => { overlay.hidden = true; overlay._cleanup && overlay._cleanup(); }, 180);
+    }
+
+    okBtn.addEventListener('click', dismiss);
+    closeBtn.addEventListener('click', dismiss);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) dismiss(); });
+
+    openPopup();
+  } catch(e) {
+    // never block the page if anything goes wrong
+    console.error('[wip-popup]', e);
+  }
 });

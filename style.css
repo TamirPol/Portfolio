@@ -468,3 +468,29 @@ section {
 @keyframes ab_d2 { from { transform: translateX(0) } to { transform: translateX(6%) } }
 @keyframes ab_d3 { from { transform: translate(0,0) } to { transform: translate(-5%, 4%) } }
 @keyframes ab_d4 { from { transform: translate(0,0) } to { transform: translate(4%, -6%) } }
+/* --- First-visit "in progress" popup --- */
+.wip-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.38); backdrop-filter: blur(6px); z-index: 9999; }
+.wip-overlay[hidden] { display: none; }
+
+.wip-dialog { width: min(92vw, 520px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255,255,255,0.10); border-radius: 16px;
+  padding: 18px 18px 14px; box-shadow: 0 18px 44px rgba(0,0,0,0.35);
+  transform: scale(.96); opacity: 0; transition: transform .18s ease, opacity .18s ease; }
+.wip-overlay.is-open .wip-dialog { transform: scale(1); opacity: 1; }
+
+.wip-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.wip-header h3 { margin: 0; font-size: 1.1rem; font-weight: 800; }
+.wip-dot { width: 10px; height: 10px; border-radius: 50%; background: #66e1ff; box-shadow: 0 0 14px #66e1ff; }
+.wip-dialog p { margin: 6px 0 12px; opacity: .9; }
+
+.wip-actions { display: flex; justify-content: flex-end; gap: 8px; }
+.wip-btn { appearance: none; border: 1px solid rgba(255,255,255,0.14); border-radius: 10px; padding: 8px 14px; font: inherit; cursor: pointer;
+  background: rgba(255,255,255,0.06); color: #fff; transition: transform .12s ease, background .12s ease; }
+.wip-btn:hover { transform: translateY(-1px); background: rgba(255,255,255,0.10); }
+
+.wip-close { position: absolute; top: 8px; right: 10px; font-size: 20px; line-height: 1; width: 32px; height: 32px;
+  border-radius: 8px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.06);
+  color: #fff; cursor: pointer; }
+.wip-close:hover { background: rgba(255,255,255,0.10); }

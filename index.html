@@ -27,7 +27,7 @@
       </ul>
     </nav>
   </header>
-
+  
   <main>
     <!-- Home -->
     <section id="home" class="home-section">
@@ -37,6 +37,20 @@
       <!-- extra spacer so the scroll animation has room -->
       <div class="hero-spacer" aria-hidden="true"></div>
     </section>
+    <!-- First-visit popup -->
+<div class="wip-overlay" id="wipOverlay" hidden>
+  <div class="wip-dialog" role="dialog" aria-modal="true" aria-labelledby="wipTitle" aria-describedby="wipDesc">
+    <button class="wip-close" id="wipClose" aria-label="Close notice">×</button>
+    <div class="wip-header">
+      <div class="wip-dot" aria-hidden="true"></div>
+      <h3 id="wipTitle">Website in progress</h3>
+    </div>
+    <p id="wipDesc">This site is still in progress — some features may be incomplete.</p>
+    <div class="wip-actions">
+      <button class="wip-btn" id="wipOk">Okay</button>
+    </div>
+  </div>
+</div>
 
     <!-- About -->
     <section id="about" class="about-section">
